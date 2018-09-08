@@ -1769,7 +1769,7 @@ h5,
 h6 {
     color: #1a171c;
     font-family: 'PT Sans', sans-serif;
-    word-break: break-all;
+    word-break: initial;
 }
 
 @media (max-width: 767px) {
