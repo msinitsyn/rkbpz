@@ -872,8 +872,8 @@ function get_custom_logo( $blog_id = 0 ) {
 		$switched_blog = true;
 	}
 
-	$custom_logo_id = get_theme_mod( 'custom_logo' );
-
+	$custom_logo_id = 27;//get_theme_mod( 'custom_logo' );
+	
 	// We have a logo. Logo is go.
 	if ( $custom_logo_id ) {
 		$custom_logo_attr = array(
@@ -886,6 +886,7 @@ function get_custom_logo( $blog_id = 0 ) {
 		 * pass it to the attributes used by wp_get_attachment_image().
 		 */
 		$image_alt = get_post_meta( $custom_logo_id, '_wp_attachment_image_alt', true );
+
 		if ( empty( $image_alt ) ) {
 			$custom_logo_attr['alt'] = get_bloginfo( 'name', 'display' );
 		}
@@ -894,9 +895,12 @@ function get_custom_logo( $blog_id = 0 ) {
 		 * If the alt attribute is not empty, there's no need to explicitly pass
 		 * it because wp_get_attachment_image() already adds the alt attribute.
 		 */
+/* 		print(wp_get_attachment_image( $custom_logo_id, array(150,150), false, $custom_logo_attr ));
+		var_dump(wp_get_attachment_image( $custom_logo_id, array(150,150), false, $custom_logo_attr )); */
+
 		$html = sprintf( '<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url">%2$s</a>',
 			esc_url( home_url( '/' ) ),
-			wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr )
+			wp_get_attachment_image($custom_logo_id, 'medium', false, $custom_logo_attr )
 		);
 	}
 

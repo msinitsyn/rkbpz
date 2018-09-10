@@ -871,6 +871,7 @@ function wp_get_attachment_image_src( $attachment_id, $size = 'thumbnail', $icon
 function wp_get_attachment_image($attachment_id, $size = 'thumbnail', $icon = false, $attr = '') {
 	$html = '';
 	$image = wp_get_attachment_image_src($attachment_id, $size, $icon);
+
 	if ( $image ) {
 		list($src, $width, $height) = $image;
 		$hwstring = image_hwstring($width, $height);

@@ -12,9 +12,9 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<?php
-			if ( has_post_thumbnail() ) {
+			/* if ( has_post_thumbnail() ) {
 				the_post_thumbnail( 'medzone-blog-image' );
-			}
+			} */
 			?>
 
 			<div class="post-header">
@@ -28,8 +28,8 @@
 				</h4><!-- end .post-ttile -->
 			</div><!-- .post-header -->
 			<div class="post-meta">
-				<span class="posted-on"><?php echo esc_html( get_the_date() ); ?></span>
-				/ <?php MedZone_Lite_Helper::posted_on( 'author' ); ?>
+				<span class="posted-on"><?php // echo esc_html( get_the_date() ); ?></span>
+				<?php //MedZone_Lite_Helper::posted_on( 'author' ); ?>
 
 				/ <?php MedZone_Lite_Helper::posted_on( 'comments' ); ?>
 				<?php if ( current_user_can( 'manage_options' ) ) { ?>
@@ -65,9 +65,9 @@
 </article>
 
 <?php
-if ( get_theme_mod( 'medzone_lite_enable_author_box', true ) ) {
+/* if ( get_theme_mod( 'medzone_lite_enable_author_box', true ) ) {
 	get_template_part( 'template-parts/misc/author-bio' );
-}
+} */
 ?>
 
 <?php the_post_navigation(); ?>

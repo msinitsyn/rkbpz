@@ -4193,7 +4193,7 @@ a.social-icon:active {
     position: absolute;
     z-index: 1025; /* 1 */
     top: 100%;
-    left: 14px;
+    left: -150px;
     display: none;
 }
 
@@ -4290,7 +4290,7 @@ a.social-icon:active {
 
 .sf-menu li.dropdown ul {
     min-width: 200px; /* 1 */
-    min-width: 13.33333333em; /* 1 */
+    min-width: 21.33333333em; /* 1 */
     background-color: #cc263d;
 }
 

@@ -14,11 +14,11 @@ $layout = MedZone_Lite_Helper::get_layout();
 
 <div id="content">
 	<!-- /// CONTENT  /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-	<div id="page-header" <?php echo ( ! empty( $img ) ) ? 'style="background-image:url(' . esc_url( $img ) . '"' : ''; ?>>
+	<div id="page-header-single" <?php echo ( ! empty( $img ) ) ? 'style="background-image:url(' . esc_url( $img ) . '"' : ''; ?>>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					<h2><?php echo esc_html( get_the_title( absint( get_the_ID() ) ) ); ?></h2>
+				<!--	<h2><?php //echo esc_html( get_the_title( absint( get_the_ID() ) ) ); ?></h2> -->
 					<?php
 					$display = get_bloginfo( 'description', 'display' );
 					if ( ! empty( $display ) ) :

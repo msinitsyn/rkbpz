@@ -17,9 +17,9 @@
 				the_custom_logo();
 			} else {
 				?>
-				<a class="site-title" href="<?php echo esc_url( home_url() ); ?>"> <?php echo esc_html( get_option( 'blogname', 'medzone-lite' ) ); ?></a>
+				<a class="site-title" href="<?php echo esc_url(home_url()); ?>"> <?php echo esc_html( get_option( 'blogname', 'medzone-lite' ) ); ?></a>
 				<?php
-				$description = get_bloginfo( 'description', 'display' );
+				$description = get_bloginfo( 'description', 'display');
 				if ( ! empty( $description ) ) :
 					?>
 					<p class="site-description"><?php echo wp_kses_post( $description ); /* WPCS: xss ok. */ ?></p>
