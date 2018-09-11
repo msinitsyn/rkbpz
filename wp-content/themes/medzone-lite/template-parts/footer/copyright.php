@@ -20,8 +20,8 @@ if ( get_theme_mod( 'medzone_lite_enable_copyright', true ) || has_nav_menu( 'co
 							get_theme_mod(
 								'medzone_lite_copyright_contents',
 								sprintf(
-									esc_html__( 'MedZone Lite by %1$sMacho Themes%2$s &copy; %3$s. All rights reserved.', 'medzone-lite' ),
-									'<a href="https://www.machothemes.com" target="_blank">',
+									esc_html__( '%1$sРеспубликанский центр профпаталогии и реабилитации%2$s &copy; %3$s. Все права защищены.', 'medzone-lite' ),
+									'<a href="https://rkbpz.zdravdnr.ru" target="_blank">',
 									'</a>',
 									date( 'Y' )
 								)

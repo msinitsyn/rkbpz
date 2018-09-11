@@ -4193,7 +4193,9 @@ a.social-icon:active {
     position: absolute;
     z-index: 1025; /* 1 */
     top: 100%;
+    top: 90%;
     left: -150px;
+    left: -13em;
     display: none;
 }
 
@@ -4233,7 +4235,7 @@ a.social-icon:active {
 .sf-menu li.dropdown a,
 .sf-menu li.mega a {
     padding: 7px 21px;
-    padding: 0.46666666em 1.4em;
+    /*padding: 0.46666666em 1.4em;*/
 }
 
 .sf-menu li.dropdown ul a,
@@ -4290,7 +4292,7 @@ a.social-icon:active {
 
 .sf-menu li.dropdown ul {
     min-width: 200px; /* 1 */
-    min-width: 21.33333333em; /* 1 */
+    min-width: 26em; /* 1 */
     background-color: #cc263d;
 }
 
@@ -4614,7 +4616,7 @@ a.social-icon:active {
 
 #page-header {
     padding: 98px 0;
-    padding: 6.53333333em 0;
+    padding: 1.28em 0;
     margin-bottom: 70px;
     margin-bottom: 4.66666666em;
     background-color: #f9f9fa;
