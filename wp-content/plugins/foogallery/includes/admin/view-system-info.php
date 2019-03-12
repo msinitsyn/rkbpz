@@ -61,9 +61,10 @@ if ( current_user_can( 'activate_plugins' ) ) {
 
 	$stream_wrappers = stream_get_wrappers();
 
-	$test_image_url_scheme = parse_url( foogallery_test_thumb_url() ,PHP_URL_SCHEME );
+	$test_image_url = foogallery_test_thumb_url();
+
+	$test_image_url_scheme = parse_url( $test_image_url ,PHP_URL_SCHEME );
 	$home_url_scheme = parse_url( home_url() ,PHP_URL_SCHEME );
-	$image_file_contents = file_get_contents( foogallery_test_thumb_url() );
 
 	$debug_info = array(
 		__( 'FooGallery version', 'foogallery' )  			=> $info['version'],
@@ -78,6 +79,7 @@ if ( current_user_can( 'activate_plugins' ) ) {
 		__( 'HTTPS Mismatch', 'foogallery' )      			=> $test_image_url_scheme === $home_url_scheme ? __( 'None', 'foogallery' ) : __( 'There is a protocol mismatch between your site URL and the actual URL!', 'foogallery' ),
 		__( 'PHP Config[allow_url_fopen]', 'foogallery' ) 	=> ini_get( 'allow_url_fopen' ),
 		__( 'PHP Config[allow_url_include]', 'foogallery' ) => ini_get( 'allow_url_fopen' ),
+		__( 'Thumbnail Generation Test', 'foogallery') 		=> $test_image_url,
 		__( 'Extensions Endpoint', 'foogallery' ) 			=> $api->get_extensions_endpoint(),
 		__( 'Extensions Errors', 'foogallery' )   			=> $api->has_extension_loading_errors() == true ? $api->get_extension_loading_errors_response() : __( 'Nope, all good', 'foogallery' ),
 		__( 'Extensions', 'foogallery' )          			=> $extension_slugs,

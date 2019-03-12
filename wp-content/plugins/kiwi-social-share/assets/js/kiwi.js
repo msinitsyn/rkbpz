@@ -132,7 +132,7 @@ var kiwi = {
 		 * @param $
 		 */
 		tabs: function ($) {
-			$('.epsilon-ui-tabs a').click(function () {
+			$('.epsilon-ui-tabs a:not([href*="admin.php?page=kiwi-upgrade"])').click(function () {
 
 				if ( $(this).closest('li').hasClass('selected') ) {
 					return 0;

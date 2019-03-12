@@ -19,13 +19,13 @@ if ( ! class_exists( 'FooGallery_Paging' ) ) {
 			add_action( 'foogallery_located_template', array( $this, 'determine_paging' ), 10, 2 );
 
 			//add the paging attributes to the gallery container
-			add_filter( 'foogallery_build_container_data_options', array( $this, 'add_paging_options' ), 10, 3 );
+			add_filter( 'foogallery_build_container_data_options', array( $this, 'add_paging_options' ), 20, 3 );
 
 			//limit the number of attachments returned when rendering a gallery
             add_filter( 'foogallery_gallery_attachments_override_for_rendering', array( $this, 'attachments_override' ), 10, 3 );
 
-            //output a script block with the rest of the attachments as json
-            add_action( 'foogallery_loaded_template', array( $this, 'output_paging_script_block' ) );
+			//output a script block with the rest of the attachments as json
+			add_action( 'foogallery_loaded_template', array( $this, 'output_paging_script_block' ) );
 		}
 
 		/**
@@ -235,7 +235,7 @@ if ( ! class_exists( 'FooGallery_Paging' ) ) {
 					'section' => __( 'Paging', 'foogallery' ),
 					'spacer'  => '<span class="spacer"></span>',
 					'type'    => 'radio',
-					'default' => '',
+					'default' => 'html',
 					'choices' => apply_filters( 'foogallery_gallery_template_paging_output_choices', array(
 						''  => __( 'JSON', 'foogallery' ),
 						'html'   => __( 'HTML', 'foogallery' )
@@ -310,6 +310,18 @@ if ( ! class_exists( 'FooGallery_Paging' ) ) {
 					}
 
                     $options['paging'] = $gallery->paging_options = $paging_options;
+
+					if ( 'on' !== foogallery_get_setting( 'output_json_to_script_block', '') ) {
+						$paging_output = $this->get_foogallery_argument( $gallery, 'paging_output', 'paging_output', '' );
+						//add the items to the option if paging_output is set to JSON
+						if ( '' === $paging_output && $paging_size > 0 ) {
+							//build up the arguments from the gallery template
+
+							$attachments      = array_slice( $gallery->attachments(), $paging_size );
+							$json_objects     = array_map( 'foogallery_build_json_object_from_attachment', $attachments );
+							$options['items'] = $json_objects;
+						}
+					}
 				}
 			}
 			return $options;
@@ -395,30 +407,27 @@ if ( ! class_exists( 'FooGallery_Paging' ) ) {
             return $override;
         }
 
-        /**
-         * Output a script block with all the gallery attachments as json
-         *
-         * @param FooGallery $gallery
-         */
-        function output_paging_script_block( $gallery ) {
-
-			if ( $this->is_paging_output_json( $gallery ) ) {
-
-                $page_size = isset($gallery->paging_options) && array_key_exists('size', $gallery->paging_options) ? $gallery->paging_options['size'] : 0;
-
-                if ($page_size > 0) {
-                    //build up the arguments from the gallery template
-
-                    $attachments = array_slice( $gallery->attachments(), $page_size );
-                    $attachments_json = array_map( 'foogallery_build_json_from_attachment', $attachments );
-
-                    echo '<script type="text/javascript">';
-                    echo '  window["foogallery-gallery-' .$gallery->ID . '-items"] = [';
-                    echo implode( ', ', $attachments_json );
-                    echo '  ];';
-                    echo '</script>';
-                }
-            }
-        }
+		/**
+		 * Output a script block with all the gallery attachments as json
+		 *
+		 * @param FooGallery $gallery
+		 */
+		function output_paging_script_block( $gallery ) {
+			if ( 'on' === foogallery_get_setting( 'output_json_to_script_block', '') ) {
+				if ( $this->is_paging_output_json( $gallery ) ) {
+					$page_size = isset( $gallery->paging_options ) && array_key_exists( 'size', $gallery->paging_options ) ? $gallery->paging_options['size'] : 0;
+					if ( $page_size > 0 ) {
+						//build up the arguments from the gallery template
+						$attachments      = array_slice( $gallery->attachments(), $page_size );
+						$attachments_json = array_map( 'foogallery_build_json_from_attachment', $attachments );
+						echo '<script type="text/javascript">';
+						echo '  window["foogallery-gallery-' . $gallery->ID . '-items"] = [';
+						echo implode( ', ', $attachments_json );
+						echo '  ];';
+						echo '</script>';
+					}
+				}
+			}
+		}
 	}
 }

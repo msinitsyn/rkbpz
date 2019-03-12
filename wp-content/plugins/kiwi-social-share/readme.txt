@@ -1,15 +1,18 @@
-﻿=== Plugin Name ===
+﻿=== Social Sharing Plugin - Kiwi ===
 
-Contributors: machothemes, silkalns
-Tags: Facebook, facebook connect, facebook like, facebook share, facebook share icon, floating buttons, floating share, floating share icons, follow, google, Google Login, google plus, icons, increase shares, linkedin, linkedin share, media, page, pinterest, pinterest button, pinterest share, plugin, post to social networks, Reddit, reddit share, reddit sharing, Share, share button, share buttons, share counter, share icons, share links, share page, share post, sharebar, sharing, sharing icons, social, social app, social buttons, social comment, social comment facebook, social connect, social floating icons, social follow, social icon, social icons, social media, social media app, social media buttons, Social Media Plugins, social media share, social media sharing, social media tools, social network share, Social Plugins, social provider, social share, Social Share Buttons, social share icon, social share icons, social sharing, social sharing icons, social widget, stumbleupon sharing, tumblr share, tumblr sharing, twitter, twitter share, woocommerce, woocommerce connect, woocommerce sharing, yahoo
+Contributors: wpkube
+Tags: social media button, social share button, social floating bar, social share bar, facebook share, social sharing icons, twitter share, woocommerce sharing, share buttons, pinterest share, google plus share, social share counters
 Requires at least: 3.8
-Tested up to: 4.9
-Stable tag: 2.0.8
+Tested up to: 5.1
+Stable tag: 2.0.14
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 This is by far the best free WordPress share plugin. It is simple yet does exactly what it should with plenty of customisation options.
+
 == Description ==
+
+**Kiwi Social Share** is a standalone plugin built, maintained & operated by the friendly folks over at [WPKube](https://www.wpkube.com/)
 
 This is by far the best & easiest to use WordPress social media share plugin. A WordPress share plugin with custom icons built-in.
 
@@ -35,14 +38,13 @@ This is by far the best & easiest to use WordPress social media share plugin. A 
 * Display social icons: before content, after content or both.
 * Amazing loading speed.
 
-= WordPress Social Media Widget (for website) =
+= What's Next? =
 
-A WordPress Social Media Widget solution is coming soon, stay tuned.
+If you like this plugin, then please consider leaving us a rating / review. This plugin is completely free and maintained by [WPKube](https://www.wpkube.com), a WordPress resource site, where you can learn from our free WordPress tutorials like [how to choose the right managed WordPress hosting](https://www.wpkube.com/best-managed-wordpress-hosting/), [how to install WordPress](https://www.wpkube.com/install-wordpress/), [choose the best shared hosting](https://www.wpkube.com/best-wordpress-hosting/), and [more](https://www.wpkube.com/category/wordpress-tutorials/). 
 
-**About us:**
-
-We are a young team of WordPress aficionados who love building WordPress plugins & <a href="https://www.machothemes.com/" rel="friend" target="_blank" title="Premium WordPress themes">Premium WordPress themes</a> over on our theme shop. We’re also blogging and wish to help our users find the best <a rel="friend" href="https://www.machothemes.com/blog/cheap-wordpress-hosting/" target="_blank" title="Cheap WordPress Hosting">Cheap WordPress hosting</a> & the best <a href="https://www.machothemes.com/blog/best-free-wordpress-bootstrap-themes/" title="Bootstrap WordPress themes" target="_blank" rel="friend">Bootstrap WordPress Themes</a>.
-
+Our other projects:
+- [MeridianThemes](https://www.meridianthemes.net) - Beautiful hand-crafted themes for WordPress
+- [Optin Forms](http://optinforms.io) - Simple and easy to use plugin for creating optin forms, works with most well know autoresponder services.
 
 == Installation ==
 
@@ -74,9 +76,25 @@ Floating Bar Filters
     kiwi_after_last_floating_bar_item
     kiwi_after_floating_bar
 
-
-
 == Changelog ==
+
+= 2.014 =
+* Remove uninstall feedback
+
+= 2.0.13 =
+* Fixed "Trying to get property ‘post_content’ when there is no id, like 404"
+
+= 2.0.11 =
+* Improve performance
+* Fixed security issue
+
+= 2.0.10 =
+* Update CMB2
+* Improved Admin UI
+
+= 2.0.9 =
+* Minor Fixes
+
 = 2.0.8 =
 * Added Fintel network
 

@@ -369,7 +369,7 @@ class Kiwi_Social_Share_Helper {
 	 */
 	public static function get_excerpt_by_id( $id ) {
 		$the_post = get_post( $id );
-		if ( NULL !== $the_post ) {
+		if ( NULL === $the_post ) {
 			return '';
 		}
 
@@ -416,16 +416,29 @@ class Kiwi_Social_Share_Helper {
 }
 
 add_action( 'wp_ajax_kiwi_social_share_get_option', 'kiwi_social_share_get_option' );
-add_action( 'wp_ajax_nopriv_kiwi_social_share_get_option', 'kiwi_social_share_get_option' );
 add_action( 'wp_ajax_kiwi_social_share_set_option', 'kiwi_social_share_set_option' );
-add_action( 'wp_ajax_nopriv_kiwi_social_share_set_option', 'kiwi_social_share_set_option' );
 
 /**
  *
  */
 function kiwi_social_share_get_option() {
+	$allowed_options = array( 'kiwi_social_identities' );
+
+	if ( ! in_array( $_POST['args']['group'], $allowed_options ) ) {
+		wp_die( 'Forbidden' );
+	}
+
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		wp_die( 'Forbidden' );
+	}
+
+	$option = sanitize_text_field( $_POST['args']['option'] );
+	$default = sanitize_text_field( $_POST['args']['default'] );
+	$group = sanitize_text_field( $_POST['args']['group'] );
+
 	if ( ! empty( $_POST ) && $_POST['action'] === 'kiwi_social_share_get_option' ) {
-		wp_die( json_encode( Kiwi_Social_Share_Helper::get_setting_value( $_POST['args']['option'], $_POST['args']['default'], $_POST['args']['group'] ) ) );
+		$value = Kiwi_Social_Share_Helper::get_setting_value( $option, $default, $group );
+		wp_die( json_encode( esc_html( $value ) ) );
 	}
 
 	wp_die( 'Forbidden' );
@@ -433,10 +446,26 @@ function kiwi_social_share_get_option() {
 
 
 function kiwi_social_share_set_option() {
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Forbidden' );
+	}
+
+	$allowed_options = array( 'kiwi_registration' );
+
+	if ( ! in_array( $_POST['args']['group'], $allowed_options ) ) {
+		wp_die( 'Forbidden' );
+	}
+
 	if ( ! empty( $_POST ) && $_POST['action'] === 'kiwi_social_share_set_option' ) {
-		$option = get_option( $_POST['args']['group'] );
-		$option[ $_POST['args']['option'] ] = $_POST['args']['value'];
-		update_option( $_POST['args']['group'], $option );
+
+		$group = sanitize_text_field( $_POST['args']['group'] );
+		$key = sanitize_text_field( $_POST['args']['option'] );
+		$value = sanitize_text_field( $_POST['args']['value'] );
+
+		$option = get_option( $group );
+		$option[ $key ] = $value;
+		update_option( $group, $option );
 		wp_die( 'Success' );
 	}
 
